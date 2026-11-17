@@ -1,20 +1,11 @@
-V
+
 steps:
-  # Build the backend Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/recipe-images/recipe-backend'
-      - './backend'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/recipe-images/recipe-backend', './backend']
 
-  # Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/recipe-images/recipe-backend'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/recipe-images/recipe-backend']
 
-  # Deploy backend to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
